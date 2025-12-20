@@ -57,7 +57,7 @@
 ```
 MedSeek/
 │
-├── app.py                      # Main application entry point
+├── streamli_app.py             # Main application entry point
 ├── config.py                   # Configuration and settings
 ├── requirements.txt            # Python dependencies
 ├── README.md                   # Project documentation (this file)
@@ -65,7 +65,8 @@ MedSeek/
 ├── routes/
 │   ├── __init__.py            # Package initializer
 │   └── main.py                # Gradio UI interface
-│
+│__ venv                       # Virtual enviornment to store python libraries
+|
 ├── services/
 │   ├── __init__.py            # Package initializer
 │   ├── symptom_analysis.py    # Text-based symptom analysis
@@ -73,7 +74,7 @@ MedSeek/
 │   ├── translator.py          # Multi-language translation service
 │   └── pdf_generator.py       # Professional PDF report generation
 │
-└── reports/                    # Generated PDF reports (auto-created)
+└── reports/                                      # Generated PDF reports (auto-created)
 ```
 
 ---
