@@ -84,6 +84,7 @@ MedSeek/
 - Python 3.8 or higher
 - pip (Python package manager)
 - Grok API key from [xAI Console](https://console.x.ai)
+ - Groq API key (set `GROQ_API_KEY` environment variable)
 
 ### Local Setup
 
@@ -112,17 +113,23 @@ pip install -r requirements.txt
 4. **Set up environment variables** (optional)
 ```bash
 # Create .env file
-echo "GROK_API_KEY=your_api_key_here" > .env
+echo "GROQ_API_KEY=your_api_key_here" > .env
 ```
 
 5. **Run the application**
 ```bash
+# Option A: Run the original Gradio demo
 python app.py
+
+# Option B: Run the new Streamlit app
+streamlit run streamlit_app.py
 ```
 
 6. **Access the application**
 ```
-Open your browser and navigate to: http://localhost:7860
+If you ran the Gradio demo (Option A) open: http://localhost:7860
+
+If you ran the Streamlit app (Option B) open: http://localhost:8501
 ```
 
 ---
@@ -132,8 +139,7 @@ Open your browser and navigate to: http://localhost:7860
 ### Quick Start Guide
 
 1. **Enter API Key**
-   - Get your Grok API key from https://console.x.ai
-   - Enter it in the "🔑 Grok API Key" field
+   - Get your Groq API key and set it as `GROQ_API_KEY` or enter it in the "🔑 Groq API Key" field
 
 2. **Select Language** (Optional)
    - Choose your preferred language from the dropdown

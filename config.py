@@ -1,7 +1,9 @@
 import os
 
 class Config:
-    GROK_API_KEY = os.getenv("ENTER YOUR OWN API KEY (I DIDN'T INCLUDE MINE)")
+    # Read Groq API key from environment. Keep empty if not set.
+    GROQ_API_KEY = os.getenv("GROQ_API_KEY")
+    # API endpoint (leave as-is unless you need to change provider URL)
     GROK_API_URL = "https://api.x.ai/v1/chat/completions"
     MODEL_NAME = "grok-2-vision-1212"
     TEMPERATURE = 0.3

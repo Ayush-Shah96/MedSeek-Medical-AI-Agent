@@ -83,7 +83,16 @@ IMPORTANT: This is for informational purposes only. Always recommend consulting 
         json=payload,
         timeout=60
     )
-    
+
+    # Handle permission / billing errors with clearer message
+    if response.status_code == 403:
+        try:
+            err = response.json()
+            err_msg = err.get("error") or err.get("message") or response.text
+        except Exception:
+            err_msg = response.text
+        raise Exception(f"API 403 Forbidden: {err_msg}. Your team may not have credits or licenses. Visit https://console.x.ai to manage billing.")
+
     if response.status_code != 200:
         raise Exception(f"API Error: {response.status_code} - {response.text}")
     

@@ -4,7 +4,7 @@ from config import Config
 
 def analyze_symptoms(symptoms, api_key):
     """
-    Analyze text symptoms using Grok API
+    Analyze text symptoms using Groq API
     """
     system_prompt = """You are an expert medical AI assistant. Analyze the provided symptoms to provide:
 1. Disease Name: Identify the most likely condition
@@ -53,7 +53,16 @@ IMPORTANT: This is for informational purposes only. Always recommend consulting 
         json=payload,
         timeout=60
     )
-    
+
+    # Handle permission / billing errors with clearer message
+    if response.status_code == 403:
+        try:
+            err = response.json()
+            err_msg = err.get("error") or err.get("message") or response.text
+        except Exception:
+            err_msg = response.text
+        raise Exception(f"API 403 Forbidden: {err_msg}. Your team may not have credits or licenses. Visit https://console.x.ai to manage billing.")
+
     if response.status_code != 200:
         raise Exception(f"API Error: {response.status_code} - {response.text}")
     
@@ -81,7 +90,7 @@ IMPORTANT: This is for informational purposes only. Always recommend consulting 
         }
 def analyze_image_with_symptoms(symptoms, image_path, api_key):
     """
-    Analyze image along with text symptoms using Grok API
+    Analyze image along with text symptoms using Groq API
     """
     system_prompt = """You are an expert medical AI assistant. Analyze the provided symptoms and medical image to provide:
 1. Disease Name: Identify the most likely condition

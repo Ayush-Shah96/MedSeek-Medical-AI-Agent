@@ -17,9 +17,11 @@ def process_medical_input(symptoms, image, api_key, language, patient_name, pati
             "", "", "", "", "", "", None
         )
     
+    # Allow using environment variable `GROQ_API_KEY` if field left empty
+    api_key = api_key or Config.GROQ_API_KEY
     if not api_key:
         return (
-            "⚠️ Please enter your Grok API key", 
+            "⚠️ Please enter your Groq API key", 
             "", "", "", "", "", "", None
         )
     
@@ -88,10 +90,10 @@ def create_interface():
                 gr.Markdown("### 📝 Input Information")
                 
                 api_key_input = gr.Textbox(
-                    label="🔑 Grok API Key",
+                    label="🔑 Groq API Key",
                     type="password",
-                    placeholder="Enter your Grok API key (xai-...)",
-                    info="Get your API key from https://console.x.ai"
+                    placeholder="Enter your Groq API key",
+                    info="Set your GROQ_API_KEY environment variable or enter it here"
                 )
                 
                 with gr.Row():
@@ -177,7 +179,7 @@ def create_interface():
             """
             ---
             ### 📌 How to Use:
-            1. **Enter your Grok API Key** (required)
+            1. **Enter your Groq API Key** (required)
             2. **Select your preferred language** (optional - defaults to English)
             3. **Add patient details** (optional - for personalized PDF report)
             4. **Describe your symptoms** in detail

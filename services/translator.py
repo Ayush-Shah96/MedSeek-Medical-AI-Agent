@@ -3,7 +3,7 @@ from config import Config
 
 def translate_result(result, target_language, api_key):
     """
-    Translate analysis result to target language using Grok API
+    Translate analysis result to target language using Groq API
     """
     if target_language == "en":
         return result
@@ -67,7 +67,15 @@ Return ONLY valid JSON, no additional text."""
             json=payload,
             timeout=60
         )
-        
+        # Handle permission / billing errors with clearer message
+        if response.status_code == 403:
+            try:
+                err = response.json()
+                err_msg = err.get("error") or err.get("message") or response.text
+            except Exception:
+                err_msg = response.text
+            raise Exception(f"API 403 Forbidden: {err_msg}. Your team may not have credits or licenses. Visit https://console.x.ai to manage billing.")
+
         if response.status_code != 200:
             return result  # Return original if translation fails
         
