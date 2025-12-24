@@ -2,6 +2,8 @@
 
 This project provides a local, offline Medical AI Agent that accepts either text symptoms or medical images and returns a predicted disease and associated precautions.
 
+Demo Video : https://www.loom.com/share/0f2c6acd947e42f3a36fcf1c754e37b7
+
 Folder layout
 
 medical-ai-agent/
