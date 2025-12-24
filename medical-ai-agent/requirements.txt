@@ -1,0 +1,7 @@
+pandas
+numpy
+scikit-learn
+joblib
+streamlit
+Pillow
+tensorflow>=2.10
